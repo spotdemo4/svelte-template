@@ -128,7 +128,7 @@
         pname = "scandemo";
         version = "0.0.1";
         src = ./.;
-        nodejs = node-slim;
+        nodejs = node;
 
         npmDeps = pkgs.importNpmLock {
           npmRoot = ./.;
