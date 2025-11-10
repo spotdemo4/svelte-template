@@ -15,6 +15,7 @@ permissions:
 
 jobs:
   check:
+    if: ${{ ! startsWith(github.event.head_commit.message, "bump:") }}
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
@@ -24,3 +25,11 @@ jobs:
       - name: Run checks
         if: ${{ steps.init.outputs.duplicate != 'true' }}
         run: nix flake check
+
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Bundle
+        run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
