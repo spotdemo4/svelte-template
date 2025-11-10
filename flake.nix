@@ -127,11 +127,14 @@
       packages.default = pkgs.buildNpmPackage (finalAttrs: {
         pname = "svelte-template";
         version = "0.0.6";
-        src = ./.;
+        src = builtins.path {
+          path = ./.;
+          name = "root";
+        };
         nodejs = node;
 
         npmDeps = pkgs.importNpmLock {
-          npmRoot = ./.;
+          npmRoot = finalAttrs.src;
         };
 
         npmConfigHook = pkgs.importNpmLock.npmConfigHook;
