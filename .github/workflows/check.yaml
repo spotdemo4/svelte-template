@@ -38,8 +38,16 @@ jobs:
             lazy-trees = false
 
       - run: |
+          echo "nix.conf"
           cat /etc/nix/nix.conf
+
+          echo "nix.custom.conf"
           cat /etc/nix/nix.custom.conf
+
+          sed -i '/lazy-trees = true/d' /etc/nix/nix.conf
+
+          echo "new nix.conf"
+          cat /etc/nix/nix.conf
 
       - run: determinate-nixd version
 
