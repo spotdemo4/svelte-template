@@ -125,8 +125,8 @@
         pname = "svelte-template";
         version = "0.0.10";
         src = builtins.path {
-          path = ./.;
           name = "root";
+          path = ./.;
         };
         nodejs = node;
 
