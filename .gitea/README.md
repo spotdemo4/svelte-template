@@ -3,39 +3,49 @@
 ![check](https://gitea.com/spotdemo4/go-template/actions/workflows/check.yaml/badge.svg)
 ![vulnerable](https://gitea.com/spotdemo4/go-template/actions/workflows/vulnerable.yaml/badge.svg)
 
-Template for starting go projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+Template for starting svelte projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
 ## Getting started
 
-```console
-$ ln -s .envrc.project .envrc # create direnv config
-$ direnv allow # allow direnv to create dev environment
+```sh
+# create direnv config
+ln -s .envrc.project .envrc
+
+# allow direnv to create dev environment
+direnv allow
 ```
 
 ## Running
 
-```console
-$ go run . # run once
-$ air # run for each change
+```sh
+npm run dev
 ```
 
 ## Building
 
-```console
-$ nix build # build for current system
-$ nix bundle -o template-linux-arm64 --bundler github:spotdemo4/nur#goToLinuxArm64
+```sh
+# build using nix
+nix build
+
+# build using npm
+npm run build
 ```
 
 ## Checking
 
-```console
-$ go test ./... # run go tests
-$ nix flake check # run all checks
+```sh
+# run all checks
+nix flake check
+
+# run npm checks
+npm run check
 ```
 
 ## Releasing
 
-```console
-$ # do nothing, releases are automatically created every day
-$ bumper # manually create a new release
+```sh
+# do nothing, releases are automatically created for significant changes
+
+# manually create a new release
+bumper
 ```

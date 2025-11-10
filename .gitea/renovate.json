@@ -6,7 +6,7 @@
 	"requireConfig": "ignored",
 	"platform": "gitea",
 	"endpoint": "https://gitea.com/api/v1",
-	"repositories": ["spotdemo4/go-template"],
+	"repositories": ["spotdemo4/svelte-template"],
 
 	// repository
 	"extends": ["config:recommended"],
@@ -33,6 +33,12 @@
 			"groupName": "GitHub Actions",
 			"matchManagers": ["github-actions"],
 			"matchPackageNames": ["*"]
+		},
+		{
+			"matchManagers": ["npm"],
+			"postUpgradeTasks": {
+				"commands": ["npm install"]
+			}
 		}
 	]
 }

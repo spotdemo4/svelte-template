@@ -32,6 +32,12 @@
 			"groupName": "GitHub Actions",
 			"matchManagers": ["github-actions"],
 			"matchPackageNames": ["*"]
+		},
+		{
+			"matchManagers": ["npm"],
+			"postUpgradeTasks": {
+				"commands": ["npm install"]
+			}
 		}
 	]
 }

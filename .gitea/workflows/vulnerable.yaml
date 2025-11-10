@@ -2,20 +2,19 @@ name: vulnerable
 
 on:
   schedule:
-    - cron: '0 9 * * 0' # every day at 09:00 UTC
+    - cron: '0 9 * * 0' # every Sunday at 09:00 UTC
   workflow_dispatch:
 
 jobs:
-  govulncheck:
+  npm-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
         uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
         with:
-          token: ${{ secrets.READ_ONLY_TOKEN }}
           shell: vulnerable
 
-      - run: govulncheck ./...
+      - run: npm audit --audit-level moderate
 
   flake:
     runs-on: ubuntu-latest
@@ -23,7 +22,6 @@ jobs:
       - name: Initialize
         uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
         with:
-          token: ${{ secrets.READ_ONLY_TOKEN }}
           shell: vulnerable
 
       - run: flake-checker -f
