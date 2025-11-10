@@ -54,8 +54,8 @@ jobs:
       - name: Bundle
         env:
           NP_RUNTIME: bwrap
-          NP_BWRAP: ${{ steps.info.outputs.static_path }}
-          NP_GIT: ${{ steps.info.outputs.git_path }}
+          NP_BWRAP: ${{ steps.bwrap.outputs.bwrap_path }}
+          NP_GIT: ${{ steps.git.outputs.git_path }}
         run: nix bundle --bundler github:DavHau/nix-portable -o result .#
 
       - name: Rename
