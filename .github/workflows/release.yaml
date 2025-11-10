@@ -13,17 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
 
-      - name: Run checks
+      - name: Check
         run: nix flake check
-
-  build:
-    needs: check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Build
         run: nix build
@@ -38,7 +31,7 @@ jobs:
           path: template.nario
 
   release:
-    needs: build
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - name: Release
@@ -51,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -60,9 +53,6 @@ jobs:
 
       - name: Import nario
         run: nix nario import --no-check-sigs < template.nario
-
-      - name: Build
-        run: nix build
 
       - name: Bwrap Info
         id: bwrap
@@ -105,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -114,9 +104,6 @@ jobs:
 
       - name: Import nario
         run: nix nario import --no-check-sigs < template.nario
-
-      - name: Build
-        run: nix build
 
       - name: Bundle
         run: |
@@ -133,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -142,9 +129,6 @@ jobs:
 
       - name: Import nario
         run: nix nario import --no-check-sigs < template.nario
-
-      - name: Build
-        run: nix build
 
       - name: Bundle
         run: |
@@ -157,11 +141,11 @@ jobs:
           files: template-linux-amd64.rpm
 
   container:
-    needs: build
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -170,9 +154,6 @@ jobs:
 
       - name: Import nario
         run: nix nario import --no-check-sigs < template.nario
-
-      - name: Build
-        run: nix build
 
       - name: Bundle
         run: nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result
