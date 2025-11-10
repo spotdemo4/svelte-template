@@ -1,9 +1,8 @@
 {
 	"recommendations": [
-		"dbaeumer.vscode-eslint",
 		"svelte.svelte-vscode",
+		"dbaeumer.vscode-eslint",
 		"jnoortheen.nix-ide",
-		"esbenp.prettier-vscode",
-		"tamasfe.even-better-toml"
+		"esbenp.prettier-vscode"
 	]
 }

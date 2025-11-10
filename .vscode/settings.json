@@ -1,5 +1,9 @@
 {
 	"editor.formatOnSave": true,
+	"files.associations": {
+		"renovate.json": "jsonc",
+		".envrc.project": "shellscript"
+	},
 
 	// svelte
 	"svelte.enable-ts-plugin": true,
@@ -33,9 +37,4 @@
 
 	// actions
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"files.associations": {
-		".semgrepignore": "ignore",
-		"renovate.json": "jsonc",
-		".envrc.project": "shellscript"
-	}
 }
