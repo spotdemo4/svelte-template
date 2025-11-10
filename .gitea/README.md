@@ -7,7 +7,7 @@ Template for starting svelte projects, part of [spotdemo4/templates](https://git
 
 ## Requirements
 
-- [Nix](https://nixos.org/) package manager
+- [nix](https://nixos.org/) package manager
 - (optional) [direnv](https://direnv.net/)
 
 ## Getting started
