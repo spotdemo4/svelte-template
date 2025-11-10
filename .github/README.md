@@ -25,7 +25,7 @@ or enter dev shell manually:
 nix develop
 ```
 
-Install dependencies:
+then install dependencies:
 
 ```elm
 npm i &&
@@ -40,37 +40,21 @@ npm run dev
 
 ## Building
 
-Build a full application:
-
 ```elm
 nix build
 ```
 
-Build for Node.js:
-
-```elm
-npm run build
-```
-
 ## Checking
-
-Run all checks:
 
 ```elm
 nix flake check
-```
-
-Run application checks:
-
-```elm
-npm run check
 ```
 
 ## Releasing
 
 Releases are automatically created for significant changes.
 
-Manually create a new release:
+To manually create a new release:
 
 ```elm
 bumper
