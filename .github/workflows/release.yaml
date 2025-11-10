@@ -172,11 +172,11 @@ jobs:
 
       - name: Release
         run: >
-          ./result
-          | gzip --fast
-          | nix shell nixpkgs#skopeo
-            --inputs-from .
-            --command skopeo copy
-            --dest-creds=${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
-            docker-archive:/dev/stdin
-            docker://ghcr.io/${{ github.repository }}:${GITHUB_REF_NAME#v}
+          ./result |
+          gzip --fast |
+          nix shell nixpkgs#skopeo
+          --inputs-from .
+          --command skopeo copy
+          --dest-creds=${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+          docker-archive:/dev/stdin
+          docker://ghcr.io/${{ github.repository }}:${GITHUB_REF_NAME#v}

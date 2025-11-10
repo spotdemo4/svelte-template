@@ -5,6 +5,7 @@ on:
     branches: ['main']
   push:
     branches: ['main']
+    tags-ignore: ['v*']
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +16,6 @@ permissions:
 
 jobs:
   check:
-    if: ${{ ! startsWith(github.event.head_commit.message, 'bump:') }}
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
