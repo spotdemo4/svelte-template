@@ -59,7 +59,7 @@ jobs:
           name: template-nario
 
       - name: Import nario
-        run: nix nario import < template.nario
+        run: nix nario import --no-check-sigs < template.nario
 
       - name: Bwrap Info
         id: bwrap
@@ -110,7 +110,7 @@ jobs:
           name: template-nario
 
       - name: Import nario
-        run: nix nario import < template.nario
+        run: nix nario import --no-check-sigs < template.nario
 
       - name: Bundle
         run: |
@@ -135,7 +135,7 @@ jobs:
           name: template-nario
 
       - name: Import nario
-        run: nix nario import < template.nario
+        run: nix nario import --no-check-sigs < template.nario
 
       - name: Bundle
         run: |
@@ -160,7 +160,7 @@ jobs:
           name: template-nario
 
       - name: Import nario
-        run: nix nario import < template.nario
+        run: nix nario import --no-check-sigs < template.nario
 
       - name: Bundle
         run: nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result
