@@ -38,4 +38,4 @@ jobs:
       - run: determinate-nixd version
 
       - name: Bundle
-        run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
+        run: nix bundle --no-lazy-trees --bundler github:NixOS/bundlers#toDEB -o result
