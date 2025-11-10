@@ -1,0 +1,12 @@
+/.env
+/.envrc
+/docker-compose*
+
+# svelte
+/.svelte-kit/
+/node_modules/
+/build/
+
+# nix
+/result*
+/.direnv/

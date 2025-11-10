@@ -1,0 +1,41 @@
+{
+	"editor.formatOnSave": true,
+
+	// svelte
+	"svelte.enable-ts-plugin": true,
+	"eslint.validate": ["svelte", "javascript", "typescript"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	},
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	// nix
+	"nix.enableLanguageServer": true,
+	"nix.serverPath": "nixd",
+	"nix.serverSettings": {
+		"nixd": {
+			"formatting": {
+				"command": ["alejandra"]
+			}
+		}
+	},
+	"[nix]": {
+		"editor.defaultFormatter": "jnoortheen.nix-ide"
+	},
+
+	// actions
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"files.associations": {
+		".semgrepignore": "ignore",
+		"renovate.json": "jsonc",
+		".envrc.project": "shellscript"
+	}
+}

@@ -1,0 +1,23 @@
+name: update
+
+on:
+  schedule:
+    - cron: "0 9 * * *" # every day at 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialize
+        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        with:
+          token: ${{ secrets.READ_ONLY_TOKEN }}
+          shell: update
+
+      - name: Renovate
+        env:
+          RENOVATE_CONFIG_FILE: .gitea/renovate.json
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_GITHUB_COM_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: renovate
