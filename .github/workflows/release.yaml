@@ -34,8 +34,36 @@ jobs:
       - name: Initialize
         uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
 
+      - name: Bwrap Info
+        id: bwrap
+        run: |
+          BWRAP_PATH=$(nix shell nixpkgs#bubblewrap \
+            --inputs-from . \
+            --command bash \
+            -c "which bwrap")
+          echo "bwrap_path=${BWRAP_PATH}" >> $GITHUB_OUTPUT
+          echo "bwrap path: ${BWRAP_PATH}"
+
+      - name: Git Info
+        id: git
+        run: |
+          GIT_PATH=$(which git)
+          echo "git_path=${GIT_PATH}" >> $GITHUB_OUTPUT
+          echo "git path: ${GIT_PATH}"
+
       - name: Bundle
-        run: nix bundle --bundler github:spotdemo4/nur#goToLinuxAmd64 -o template-linux-amd64
+        env:
+          NP_RUNTIME: bwrap
+          NP_BWRAP: ${{ steps.info.outputs.static_path }}
+          NP_GIT: ${{ steps.info.outputs.git_path }}
+        run: nix bundle -o result --bundler github:DavHau/nix-portable
+
+      - name: Rename
+        id: rename
+        run: |
+          FILE_LINK=$(find -L result -type f -print -quit)
+          FILE_REAL=$(readlink -f "${FILE_LINK}")
+          ln -s "${FILE_REAL}" template-linux-amd64
 
       - name: Release
         uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
@@ -75,66 +103,6 @@ jobs:
         uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
         with:
           files: template-linux-amd64.rpm
-
-  linux-arm64:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
-
-      - name: Bundle
-        run: nix bundle --bundler github:spotdemo4/nur#goToLinuxArm64 -o template-linux-arm64
-
-      - name: Release
-        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
-        with:
-          files: template-linux-arm64
-
-  linux-arm:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
-
-      - name: Bundle
-        run: nix bundle --bundler github:spotdemo4/nur#goToLinuxArm -o template-linux-arm
-
-      - name: Release
-        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
-        with:
-          files: template-linux-arm
-
-  darwin-arm64:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
-
-      - name: Bundle
-        run: nix bundle --bundler github:spotdemo4/nur#goToDarwinArm64 -o template-darwin-arm64
-
-      - name: Release
-        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
-        with:
-          files: template-darwin-arm64
-
-  windows-amd64:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
-
-      - name: Bundle
-        run: nix bundle --bundler github:spotdemo4/nur#goToWindowsAmd64 -o template-windows-amd64.exe
-
-      - name: Release
-        uses: softprops/action-gh-release@5be0e66d93ac7ed76da52eca8bb058f665c3a5fe # v2.4.2
-        with:
-          files: template-windows-amd64
 
   container:
     needs: check

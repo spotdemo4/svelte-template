@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  govulncheck:
+  npm-audit:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
@@ -17,7 +17,7 @@ jobs:
         with:
           shell: vulnerable
 
-      - run: govulncheck ./...
+      - run: npm audit --audit-level moderate
 
   flake:
     runs-on: ubuntu-latest
