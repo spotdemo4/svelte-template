@@ -13,6 +13,9 @@ ln -s .envrc.project .envrc
 
 # allow direnv to create dev environment
 direnv allow
+
+# install deps
+npm i
 ```
 
 ## Running
