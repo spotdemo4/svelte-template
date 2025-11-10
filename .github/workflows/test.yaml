@@ -36,6 +36,8 @@ jobs:
         with:
           extra-conf: lazy-trees = false
 
-      - run: determinate-nixd version
+      - run: |
+          determinate-nixd version
+          cat /etc/nix/nix.custom.conf
 
       - run: nix bundle --no-lazy-trees --bundler github:NixOS/bundlers#toDEB -o result
