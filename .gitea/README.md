@@ -5,50 +5,73 @@
 
 Template for starting svelte projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
+## Requirements
+
+- [Nix](https://nixos.org/) package manager
+- (optional) [direnv](https://direnv.net/)
+
 ## Getting started
 
-```sh
-# create direnv config
-ln -s .envrc.project .envrc
+Initialize direnv:
 
-# allow direnv to create dev environment
+```elm
+ln -s .envrc.project .envrc &&
 direnv allow
+```
 
-# install deps
-npm i
+or enter dev shell manually:
+
+```elm
+nix develop
+```
+
+Install dependencies:
+
+```elm
+npm i &&
+npx svelte-kit sync
 ```
 
 ## Running
 
-```sh
+```elm
 npm run dev
 ```
 
 ## Building
 
-```sh
-# build using nix
-nix build
+Build a full application:
 
-# build using npm
+```elm
+nix build
+```
+
+Build for Node.js:
+
+```elm
 npm run build
 ```
 
 ## Checking
 
-```sh
-# run all checks
-nix flake check
+Run all checks:
 
-# run npm checks
+```elm
+nix flake check
+```
+
+Run application checks:
+
+```elm
 npm run check
 ```
 
 ## Releasing
 
-```sh
-# do nothing, releases are automatically created for significant changes
+Releases are automatically created for significant changes.
 
-# manually create a new release
+Manually create a new release:
+
+```elm
 bumper
 ```
