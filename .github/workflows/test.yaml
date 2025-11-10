@@ -34,7 +34,7 @@ jobs:
 
       - uses: DeterminateSystems/determinate-nix-action@0261e3554149588c911e068afc042bdc0627f227 # v3.12.2
         with:
-          extra-conf: |
+          extra-conf:
             lazy-trees = false
 
       - run: determinate-nixd version
