@@ -32,9 +32,8 @@ jobs:
       - uses: actions/checkout@v5
 
       - uses: DeterminateSystems/determinate-nix-action@0261e3554149588c911e068afc042bdc0627f227 # v3.12.2
-        with:
-          extra-conf: |
-            lazy-trees = false
+
+      - run: echo "lazy-trees = false" | sudo tee -a /etc/nix/nix.custom.conf
 
       - run: determinate-nixd version
 
