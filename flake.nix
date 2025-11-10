@@ -125,7 +125,7 @@
         };
 
       packages.default = pkgs.buildNpmPackage (finalAttrs: {
-        pname = "scandemo";
+        pname = "svelte-template";
         version = "0.0.1";
         src = ./.;
         nodejs = node;
