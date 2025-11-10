@@ -88,8 +88,8 @@
             npx prettier --check .
             npx eslint .
             npx svelte-kit sync && npx svelte-check
-            opengrep scan --quiet --error --config="${semgrep-rules}/typescript"
-            opengrep scan --quiet --error --config="${semgrep-rules}/javascript"
+            opengrep scan --quiet --error --use-git-ignore --config="${semgrep-rules}/typescript"
+            opengrep scan --quiet --error --use-git-ignore --config="${semgrep-rules}/javascript"
           '';
         };
 
@@ -110,8 +110,13 @@
             renovate
           ];
           script = ''
+            # github
             action-validator .github/**/*.yaml
             renovate-config-validator .github/renovate.json
+
+            # gitea
+            action-validator .gitea/**/*.yaml
+            renovate-config-validator .gitea/renovate.json
           '';
         };
       };
