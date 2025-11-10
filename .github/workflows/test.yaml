@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: DeterminateSystems/nix-installer-action@786fff0690178f1234e4e1fe9b536e94f5433196 # v20
+      - uses: cachix/install-nix-action@7ec16f2c061ab07b235a7245e06ed46fe9a1cab6 # v31
 
       - run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
 
@@ -38,4 +38,4 @@ jobs:
 
       - run: determinate-nixd version
 
-      - run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
+      - run: nix bundle --no-lazy-trees --bundler github:NixOS/bundlers#toDEB -o result
