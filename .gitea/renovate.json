@@ -1,38 +1,38 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 
-  // self-hosted
-  "onboarding": false,
-  "requireConfig": "ignored",
-  "platform": "gitea",
-  "endpoint": "https://gitea.com/api/v1",
-  "repositories": ["spotdemo4/go-template"],
+	// self-hosted
+	"onboarding": false,
+	"requireConfig": "ignored",
+	"platform": "gitea",
+	"endpoint": "https://gitea.com/api/v1",
+	"repositories": ["spotdemo4/go-template"],
 
-  // repository
-  "extends": ["config:recommended"],
-  "branchPrefix": "renovate/",
-  "dependencyDashboardTitle": "Dependency Dashboard",
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true
-  },
-  "nix": {
-    "enabled": true
-  },
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
-    },
-    {
-      "groupName": "Nix Inputs",
-      "matchManagers": ["nix"],
-      "matchPackageNames": ["*"]
-    },
-    {
-      "groupName": "GitHub Actions",
-      "matchManagers": ["github-actions"],
-      "matchPackageNames": ["*"]
-    }
-  ]
+	// repository
+	"extends": ["config:recommended"],
+	"branchPrefix": "renovate/",
+	"dependencyDashboardTitle": "Dependency Dashboard",
+	"lockFileMaintenance": {
+		"enabled": true,
+		"automerge": true
+	},
+	"nix": {
+		"enabled": true
+	},
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"automerge": true
+		},
+		{
+			"groupName": "Nix Inputs",
+			"matchManagers": ["nix"],
+			"matchPackageNames": ["*"]
+		},
+		{
+			"groupName": "GitHub Actions",
+			"matchManagers": ["github-actions"],
+			"matchPackageNames": ["*"]
+		}
+	]
 }
