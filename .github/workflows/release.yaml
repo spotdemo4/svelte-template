@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Run checks
         run: nix flake check
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Build
         run: nix build
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -105,7 +105,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -133,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Download nario
         uses: actions/download-artifact@v5
@@ -161,7 +161,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@63cc315d93acb3b914827e4ecd6c94d3358986f6 # v1.7.1
+        uses: spotdemo4/nix-init@763ed4d8a4eb5dfc606b4127339042eb8dd685b2 # v1.8.0
 
       - name: Download nario
         uses: actions/download-artifact@v5
