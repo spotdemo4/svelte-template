@@ -11,7 +11,7 @@
   };
 
   inputs = {
-    systems.url = "systems";
+    systems.url = "github:nix-systems/default";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     utils = {
       url = "github:numtide/flake-utils";
@@ -78,51 +78,43 @@
         };
       };
 
-      checks =
-        pkgs.lib.mkChecks {
-          scan = {
-            src = ./.;
-            deps = with pkgs; [
-              opengrep
-            ];
-            script = ''
-              opengrep scan --quiet --error --config="${semgrep-rules}/typescript"
-              opengrep scan --quiet --error --config="${semgrep-rules}/javascript"
-            '';
-          };
-
-          nix = {
-            src = ./.;
-            deps = with pkgs; [
-              alejandra
-            ];
-            script = ''
-              alejandra -c .
-            '';
-          };
-
-          actions = {
-            src = ./.;
-            deps = with pkgs; [
-              action-validator
-              renovate
-            ];
-            script = ''
-              action-validator .github/**/*.yaml
-              renovate-config-validator .github/renovate.json
-            '';
-          };
-        }
-        // {
-          svelte = packages.default.overrideAttrs {
-            doCheck = true;
-            checkPhase = ''
-              npx prettier --check .
-              npx eslint .
-              npx svelte-kit sync && npx svelte-check
-            '';
-          };
+      checks = pkgs.lib.mkChecks {
+        svelte = {
+          src = packages.default;
+          deps = with pkgs; [
+            opengrep
+          ];
+          script = ''
+            npx prettier --check .
+            npx eslint .
+            npx svelte-kit sync && npx svelte-check
+            opengrep scan --quiet --error --config="${semgrep-rules}/typescript"
+            opengrep scan --quiet --error --config="${semgrep-rules}/javascript"
+          '';
         };
+
+        nix = {
+          src = ./.;
+          deps = with pkgs; [
+            alejandra
+          ];
+          script = ''
+            alejandra -c .
+          '';
+        };
+
+        actions = {
+          src = ./.;
+          deps = with pkgs; [
+            action-validator
+            renovate
+          ];
+          script = ''
+            action-validator .github/**/*.yaml
+            renovate-config-validator .github/renovate.json
+          '';
+        };
+      };
 
       packages.default = pkgs.buildNpmPackage (finalAttrs: {
         pname = "svelte-template";

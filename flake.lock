@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762679517,
-        "narHash": "sha256-M1K08vkXVe92VyTFECgT1zK1Bfkl4R01Q//RyEtjbZo=",
+        "lastModified": 1762799024,
+        "narHash": "sha256-0g+HI9czDoGP4QlmkETy5eAyQMD/7sCuDRxiVY7+Zbk=",
         "owner": "spotdemo4",
         "repo": "nur",
-        "rev": "4ddfe801a49f496ca2ac78fb173d2f90cd57a81b",
+        "rev": "27e34810a1a254c8fdce9e62fb16075f490f7172",
         "type": "github"
       },
       "original": {
@@ -71,8 +71,9 @@
         "type": "github"
       },
       "original": {
-        "id": "systems",
-        "type": "indirect"
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "utils": {
