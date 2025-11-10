@@ -31,11 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: DeterminateSystems/nix-installer-action@main
-        with:
-          determinate: true
-          extra-conf: |
-            lazy-trees = false
+      - uses: DeterminateSystems/determinate-nix-action@b8b92273ba88abf50b7598dcd79fd45d9be3d9a0 # v3.12.1
 
       - run: |
           echo "nix.conf"
@@ -43,11 +39,6 @@ jobs:
 
           echo "nix.custom.conf"
           cat /etc/nix/nix.custom.conf
-
-          sudo sed -i '/lazy-trees = true/d' /etc/nix/nix.conf
-
-          echo "new nix.conf"
-          cat /etc/nix/nix.conf
 
       - run: determinate-nixd version
 
