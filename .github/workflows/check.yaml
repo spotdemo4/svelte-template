@@ -44,7 +44,7 @@ jobs:
           echo "nix.custom.conf"
           cat /etc/nix/nix.custom.conf
 
-          sed -i '/lazy-trees = true/d' /etc/nix/nix.conf
+          sudo sed -i '/lazy-trees = true/d' /etc/nix/nix.conf
 
           echo "new nix.conf"
           cat /etc/nix/nix.conf
