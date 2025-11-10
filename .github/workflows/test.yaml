@@ -27,6 +27,20 @@ jobs:
 
       - run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
 
+  bundle-detsys-twice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: DeterminateSystems/determinate-nix-action@0261e3554149588c911e068afc042bdc0627f227 # v3.12.2
+
+      - run: determinate-nixd version
+
+      - run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
+        continue-on-error: true
+
+      - run: nix bundle --bundler github:NixOS/bundlers#toDEB -o result
+
   bundle-detsys-no-lazy:
     runs-on: ubuntu-latest
     steps:
