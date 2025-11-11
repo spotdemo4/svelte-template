@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  npm-audit:
+  svelte:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
@@ -17,9 +17,10 @@ jobs:
         with:
           shell: vulnerable
 
-      - run: npm audit --audit-level moderate
+      - name: npm audit
+        run: npm audit --audit-level moderate
 
-  flake:
+  nix:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
@@ -27,4 +28,27 @@ jobs:
         with:
           shell: vulnerable
 
-      - run: flake-checker -f
+      - name: flake-checker
+        run: flake-checker -f
+
+      - name: build
+        run: nix build -o result
+
+      - name: vulnix
+        uses: spotdemo4/vulnix-action@c614a37ec8850272bf58e0f821f3028aa32e5c4b # v1.0.1
+        with:
+          path: result
+          score: 7
+
+  actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialize
+        uses: spotdemo4/nix-init@690fe67ad00aa917e156d970e6dd3c3ef4db33c5 # v1.8.2
+        with:
+          shell: vulnerable
+
+      - name: octoscan
+        run: |
+          octoscan scan --verbose .github
+          octoscan scan --verbose .gitea
