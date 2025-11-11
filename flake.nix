@@ -112,6 +112,7 @@
           src = ./.;
           deps = with pkgs; [
             action-validator
+            octoscan
             renovate
           ];
           script = ''
