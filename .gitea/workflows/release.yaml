@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@2109e877d5ff4cd827944b51781cc6b1eac88a47 # v1.8.3
+        uses: spotdemo4/nix-init@d96e51032eab0e79b908192bcf66ed723140d0b1 # v1.8.4
 
       - name: Run checks
         run: nix flake check
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@2109e877d5ff4cd827944b51781cc6b1eac88a47 # v1.8.3
+        uses: spotdemo4/nix-init@d96e51032eab0e79b908192bcf66ed723140d0b1 # v1.8.4
 
       - name: Bwrap Info
         id: bwrap
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@2109e877d5ff4cd827944b51781cc6b1eac88a47 # v1.8.3
+        uses: spotdemo4/nix-init@d96e51032eab0e79b908192bcf66ed723140d0b1 # v1.8.4
 
       - name: Bundle
         run: |
@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@2109e877d5ff4cd827944b51781cc6b1eac88a47 # v1.8.3
+        uses: spotdemo4/nix-init@d96e51032eab0e79b908192bcf66ed723140d0b1 # v1.8.4
 
       - name: Bundle
         run: |
@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@2109e877d5ff4cd827944b51781cc6b1eac88a47 # v1.8.3
+        uses: spotdemo4/nix-init@d96e51032eab0e79b908192bcf66ed723140d0b1 # v1.8.4
 
       - name: Bundle
         run: nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result
