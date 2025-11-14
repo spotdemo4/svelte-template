@@ -54,7 +54,7 @@ jobs:
       - name: Import build
         run: nix nario import --no-check-sigs < build.nario
 
-      - name: Bwrap Info
+      - name: Bwrap info
         id: bwrap
         run: |
           BWRAP_PATH=$(nix shell nixpkgs#bubblewrap \
@@ -64,7 +64,7 @@ jobs:
           echo "bwrap_path=${BWRAP_PATH}" >> $GITHUB_OUTPUT
           echo "bwrap path: ${BWRAP_PATH}"
 
-      - name: Git Info
+      - name: Git info
         id: git
         run: |
           GIT_PATH=$(which git)
@@ -76,10 +76,7 @@ jobs:
           NP_RUNTIME: bwrap
           NP_BWRAP: ${{ steps.bwrap.outputs.bwrap_path }}
           NP_GIT: ${{ steps.git.outputs.git_path }}
-        run: |
-          if ! nix bundle --bundler github:DavHau/nix-portable -o result; then
-            nix bundle --bundler github:DavHau/nix-portable -o result
-          fi
+        run: nix bundle --bundler github:DavHau/nix-portable -o result
 
       - name: Rename
         id: rename
@@ -110,10 +107,7 @@ jobs:
 
       - name: Bundle
         run: |
-          if ! nix bundle --bundler github:NixOS/bundlers#toDEB -o result; then
-            nix bundle --bundler github:NixOS/bundlers#toDEB -o result
-          fi
-
+          nix bundle --bundler github:NixOS/bundlers#toDEB -o result
           cp result/*.deb template-linux-amd64.deb
 
       - name: Release
@@ -138,10 +132,7 @@ jobs:
 
       - name: Bundle
         run: |
-          if ! nix bundle --bundler github:NixOS/bundlers#toRPM -o result; then
-            nix bundle --bundler github:NixOS/bundlers#toRPM -o result
-          fi
-
+          nix bundle --bundler github:NixOS/bundlers#toRPM -o result
           cp result/*.rpm template-linux-amd64.rpm
 
       - name: Release
@@ -165,10 +156,7 @@ jobs:
         run: nix nario import --no-check-sigs < build.nario
 
       - name: Bundle
-        run: |
-          if ! nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result; then
-            nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result
-          fi
+        run: nix bundle --bundler github:spotdemo4/nur#toDockerStream -o result
 
       - name: Release
         run: >
