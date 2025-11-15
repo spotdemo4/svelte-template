@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize
-        uses: spotdemo4/nix-init@531af3ea9560d03f371c7c27d71d3b73c1165249 # v1.8.6
+        uses: spotdemo4/nix-init@653c485759755505036c9e4b09b86b1f6a6ae511 # v1.8.7
         with:
           token: ${{ secrets.USER_TOKEN }}
           fetch_depth: 0
