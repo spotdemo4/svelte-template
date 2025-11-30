@@ -35,7 +35,7 @@ npx svelte-kit sync
 ## Running
 
 ```elm
-nix run
+nix run #dev
 ```
 
 ## Building
