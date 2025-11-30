@@ -3,7 +3,7 @@
 ![check](https://gitea.com/spotdemo4/svelte-template/actions/workflows/check.yaml/badge.svg)
 ![vulnerable](https://gitea.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml/badge.svg)
 
-Template for starting svelte projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+Template for starting [SvelteKit](https://svelte.dev/) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
 ## Requirements
 

@@ -97,18 +97,22 @@
               npx prettier --check .
               npx eslint .
               npx svelte-kit sync && npx svelte-check
-              opengrep scan --quiet --error --use-git-ignore --config="${semgrep-rules}/typescript"
-              opengrep scan --quiet --error --use-git-ignore --config="${semgrep-rules}/javascript"
+              opengrep scan \
+                --quiet \
+                --error \
+                --use-git-ignore \
+                --config="${semgrep-rules}/typescript" \
+                --config="${semgrep-rules}/javascript"
             '';
           };
 
           nix = {
             src = ./.;
             deps = with pkgs; [
-              nixfmt
+              nixfmt-tree
             ];
             script = ''
-              nixfmt -c flake.nix
+              treefmt --ci
             '';
           };
 
@@ -176,7 +180,7 @@
           };
         });
 
-        formatter = pkgs.nixfmt;
+        formatter = pkgs.nixfmt-tree;
       }
     );
 }
