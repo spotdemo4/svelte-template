@@ -7,7 +7,7 @@ Template for starting [SvelteKit](https://svelte.dev/) projects, part of [spotde
 
 ## Requirements
 
-- [nix](https://nixos.org/) package manager
+- [Nix](https://nixos.org/) package manager
 - (optional) [direnv](https://direnv.net/)
 
 ## Getting started
@@ -35,7 +35,7 @@ npx svelte-kit sync
 ## Running
 
 ```elm
-npm run dev
+nix run
 ```
 
 ## Building
