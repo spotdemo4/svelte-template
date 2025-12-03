@@ -1,4 +1,4 @@
-# svelte template
+# sveltekit template
 
 ![check](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml/badge.svg?branch=main)
 ![vulnerable](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml/badge.svg?branch=main)
