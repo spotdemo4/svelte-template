@@ -64,21 +64,21 @@ bumper
 
 ### Binary
 
-| OS      | Architecture | Download                                                                                                                  |
-| ------- | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Linux   | x86_64       | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/node-template-0.2.0-x86_64-linux.tar.xz)   |
-| Linux   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/node-template-0.2.0-aarch64-linux.tar.xz)  |
-| MacOS   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/node-template-0.2.0-aarch64-darwin.tar.xz) |
-| Windows | x86_64       | [zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/node-template-0.2.0-x86_64-windows.zip)       |
+| OS      | Architecture | Download                                                                                                                    |
+| ------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Linux   | x86_64       | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/svelte-template-0.2.0-x86_64-linux.tar.xz)   |
+| Linux   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/svelte-template-0.2.0-aarch64-linux.tar.xz)  |
+| MacOS   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/svelte-template-0.2.0-aarch64-darwin.tar.xz) |
+| Windows | x86_64       | [zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.2.0/svelte-template-0.2.0-x86_64-windows.zip)       |
 
 ### Docker
 
 ```elm
-docker run ghcr.io/spotdemo4/node-template:0.2.0
+docker run ghcr.io/spotdemo4/svelte-template:0.2.0
 ```
 
 ### Nix
 
 ```elm
-nix run github:spotdemo4/node-template
+nix run github:spotdemo4/svelte-template
 ```
