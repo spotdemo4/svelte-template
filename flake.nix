@@ -145,7 +145,7 @@
 
         packages.default = pkgs.buildNpmPackage (finalAttrs: {
           pname = "svelte-template";
-          version = "0.1.6";
+          version = "0.2.0";
           src = builtins.path {
             name = "root";
             path = ./.;
