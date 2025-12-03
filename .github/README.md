@@ -1,13 +1,13 @@
 # svelte template
 
-![check](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml/badge.svg)
-![vulnerable](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml/badge.svg)
+![check](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml/badge.svg?branch=main)
+![vulnerable](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml/badge.svg?branch=main)
 
-Template for starting [SvelteKit](https://svelte.dev/) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+Template for starting [sveltekit](https://svelte.dev/) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
 ## Requirements
 
-- [Nix](https://nixos.org/) package manager
+- [nix](https://nixos.org/)
 - (optional) [direnv](https://direnv.net/)
 
 ## Getting started
@@ -19,7 +19,7 @@ ln -s .envrc.project .envrc &&
 direnv allow
 ```
 
-or enter dev shell manually:
+or manually enter the development environment:
 
 ```elm
 nix develop
@@ -32,25 +32,25 @@ npm i &&
 npx svelte-kit sync
 ```
 
-## Running
+## Run
 
 ```elm
 nix run #dev
 ```
 
-## Building
+## Build
 
 ```elm
 nix build
 ```
 
-## Checking
+## Check
 
 ```elm
 nix flake check
 ```
 
-## Releasing
+## Release
 
 Releases are automatically created for significant changes.
 
@@ -58,4 +58,27 @@ To manually create a new release:
 
 ```elm
 bumper
+```
+
+## Use
+
+### Binary
+
+| OS      | Architecture | Download                                                                                                                  |
+| ------- | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| Linux   | x86_64       | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.1.6/node-template-0.1.6-x86_64-linux.tar.xz)   |
+| Linux   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.1.6/node-template-0.1.6-aarch64-linux.tar.xz)  |
+| MacOS   | aarch64      | [tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.1.6/node-template-0.1.6-aarch64-darwin.tar.xz) |
+| Windows | x86_64       | [zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.1.6/node-template-0.1.6-x86_64-windows.zip)       |
+
+### Docker
+
+```elm
+docker run ghcr.io/spotdemo4/node-template:0.1.6
+```
+
+### Nix
+
+```elm
+nix run github:spotdemo4/node-template
 ```
