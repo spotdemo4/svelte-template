@@ -132,15 +132,9 @@
               renovate
             ];
             script = ''
-              # github
               action-validator .github/**/*.yaml
               octoscan scan .github
               renovate-config-validator .github/renovate.json
-
-              # gitea
-              action-validator .gitea/**/*.yaml
-              octoscan scan .gitea
-              renovate-config-validator .gitea/renovate.json
             '';
           };
         };
