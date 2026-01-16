@@ -15,10 +15,10 @@
 		"editor.defaultFormatter": "svelte.svelte-vscode"
 	},
 	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "prettier.prettier-vscode"
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "prettier.prettier-vscode"
 	},
 
 	// nix
@@ -29,5 +29,5 @@
 	},
 
 	// actions
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"editor.defaultFormatter": "prettier.prettier-vscode"
 }

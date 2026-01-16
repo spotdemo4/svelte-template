@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1764445028,
-        "narHash": "sha256-ik6H/0Zl+qHYDKTXFPpzuVHSZE+uvVz2XQuQd1IVXzo=",
+        "lastModified": 1768395095,
+        "narHash": "sha256-ZhuYJbwbZT32QA95tSkXd9zXHcdZj90EzHpEXBMabaw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a09378c0108815dbf3961a0e085936f4146ec415",
+        "rev": "13868c071cc73a5e9f610c47d7bb08e5da64fdd5",
         "type": "github"
       },
       "original": {
@@ -19,25 +19,8 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "semgrep-rules": "semgrep-rules",
         "systems": "systems",
         "trev": "trev"
-      }
-    },
-    "semgrep-rules": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1764007879,
-        "narHash": "sha256-YBa6DJnMaIBDGERaqHiXG15t2Sdb1noqY7f/C0OtVbQ=",
-        "owner": "semgrep",
-        "repo": "semgrep-rules",
-        "rev": "1b69c3f93aa04267fd85fc668d2df168245ce776",
-        "type": "github"
-      },
-      "original": {
-        "owner": "semgrep",
-        "repo": "semgrep-rules",
-        "type": "github"
       }
     },
     "systems": {
@@ -65,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764489272,
-        "narHash": "sha256-JUFMtvoYZUPLv3et07ozvHm4MP3sYebCVjuoeBFAPNU=",
+        "lastModified": 1768574316,
+        "narHash": "sha256-4VysiytjIGcNf4uC5o+AQ2QQVisMCv/raI8t0V+6y/s=",
         "owner": "spotdemo4",
         "repo": "nur",
-        "rev": "ec24cd1b6a0b082bf0f686eb9cb5e046715491ee",
+        "rev": "bd206b6d104da6c1cb9ee193bcb1fb35074f1d20",
         "type": "github"
       },
       "original": {

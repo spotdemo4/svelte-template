@@ -3,6 +3,6 @@
 		"svelte.svelte-vscode",
 		"dbaeumer.vscode-eslint",
 		"jnoortheen.nix-ide",
-		"esbenp.prettier-vscode"
+		"prettier.prettier-vscode"
 	]
 }

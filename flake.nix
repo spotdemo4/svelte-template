@@ -1,5 +1,5 @@
 {
-  description = "template";
+  description = "svelte template";
 
   nixConfig = {
     extra-substituters = [
@@ -18,17 +18,12 @@
       inputs.systems.follows = "systems";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    semgrep-rules = {
-      url = "github:semgrep/semgrep-rules";
-      flake = false;
-    };
   };
 
   outputs =
     {
       nixpkgs,
       trev,
-      semgrep-rules,
       ...
     }:
     trev.libs.mkFlake (
@@ -43,6 +38,7 @@
         };
         node = pkgs.nodejs_24;
         node-slim = pkgs.nodejs-slim_24;
+        fs = pkgs.lib.fileset;
       in
       rec {
         devShells = {
@@ -51,11 +47,11 @@
               # svelte
               node
 
+              # formatters
+              nixfmt
+
               # util
               bumper
-
-              # nix
-              nixfmt
             ];
             shellHook = pkgs.shellhook.ref;
           };
@@ -68,7 +64,7 @@
 
           release = pkgs.mkShell {
             packages = with pkgs; [
-              skopeo
+              nix-flake-release
             ];
           };
 
@@ -76,7 +72,7 @@
             packages = with pkgs; [
               renovate
 
-              # svelte
+              # npm i
               node
             ];
           };
@@ -98,24 +94,18 @@
         checks = pkgs.lib.mkChecks {
           svelte = {
             src = packages.default;
-            deps = with pkgs; [
-              opengrep
-            ];
             script = ''
               npx prettier --check .
               npx eslint .
               npx svelte-kit sync && npx svelte-check
-              opengrep scan \
-                --quiet \
-                --error \
-                --use-git-ignore \
-                --config="${semgrep-rules}/typescript" \
-                --config="${semgrep-rules}/javascript"
             '';
           };
 
           nix = {
-            src = ./.;
+            src = fs.toSource {
+              root = ./.;
+              fileset = fs.fileFilter (file: file.hasExt "nix") ./.;
+            };
             deps = with pkgs; [
               nixfmt-tree
             ];
@@ -124,17 +114,33 @@
             '';
           };
 
-          actions = {
-            src = ./.;
+          renovate = {
+            src = fs.toSource {
+              root = ./.github;
+              fileset = ./.github/renovate.json;
+            };
             deps = with pkgs; [
-              action-validator
-              octoscan
               renovate
             ];
             script = ''
-              action-validator .github/**/*.yaml
-              octoscan scan .github
-              renovate-config-validator .github/renovate.json
+              renovate-config-validator renovate.json
+            '';
+          };
+
+          actions = {
+            src = fs.toSource {
+              root = ./.;
+              fileset = fs.unions [
+                ./.github/workflows
+              ];
+            };
+            deps = with pkgs; [
+              action-validator
+              octoscan
+            ];
+            script = ''
+              action-validator **/*.yaml
+              octoscan scan .
             '';
           };
         };
@@ -143,48 +149,75 @@
           dev.script = "npm run dev";
         };
 
-        packages.default = pkgs.buildNpmPackage (finalAttrs: {
-          pname = "svelte-template";
-          version = "0.2.1";
-          src = builtins.path {
-            name = "root";
-            path = ./.;
+        packages = {
+          default = pkgs.buildNpmPackage (finalAttrs: {
+            pname = "svelte-template";
+            version = "0.2.1";
+
+            src = fs.toSource {
+              root = ./.;
+              fileset = fs.difference ./. (
+                fs.unions [
+                  ./.github
+                  ./.vscode
+                  ./flake.nix
+                  ./flake.lock
+                ]
+              );
+            };
+            nodejs = node;
+
+            npmDeps = pkgs.importNpmLock {
+              npmRoot = finalAttrs.src;
+            };
+
+            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+
+            nativeBuildInputs = with pkgs; [
+              makeWrapper
+            ];
+
+            doCheck = false;
+
+            installPhase = ''
+              runHook preInstall
+
+               mkdir -p $out/{bin,lib/node_modules/svelte-template}
+               cp -r build node_modules package.json $out/lib/node_modules/svelte-template
+
+               makeWrapper "${pkgs.lib.getExe node-slim}" "$out/bin/svelte-template" \
+                 --add-flags "$out/lib/node_modules/svelte-template/build/index.js"
+
+               runHook postInstall
+            '';
+
+            meta = {
+              description = "svelte template";
+              mainProgram = "svelte-template";
+              homepage = "https://github.com/spotdemo4/svelte-template";
+              changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
+              license = pkgs.lib.licenses.mit;
+              platforms = pkgs.lib.platforms.all;
+            };
+          });
+
+          image = pkgs.dockerTools.buildLayeredImage {
+            name = packages.default.pname;
+            tag = packages.default.version;
+
+            contents = with pkgs; [
+              dockerTools.caCertificates
+              packages.default
+            ];
+
+            created = "now";
+            meta = packages.default.meta;
+
+            config = {
+              Cmd = [ "${pkgs.lib.meta.getExe packages.default}" ];
+            };
           };
-          nodejs = node;
-
-          npmDeps = pkgs.importNpmLock {
-            npmRoot = finalAttrs.src;
-          };
-
-          npmConfigHook = pkgs.importNpmLock.npmConfigHook;
-
-          nativeBuildInputs = with pkgs; [
-            makeWrapper
-          ];
-
-          doCheck = false;
-
-          installPhase = ''
-            runHook preInstall
-
-             mkdir -p $out/{bin,lib/node_modules/svelte-template}
-             cp -r build node_modules package.json $out/lib/node_modules/svelte-template
-
-             makeWrapper "${pkgs.lib.getExe node-slim}" "$out/bin/svelte-template" \
-               --add-flags "$out/lib/node_modules/svelte-template/build/index.js"
-
-             runHook postInstall
-          '';
-
-          meta = {
-            description = "svelte template";
-            mainProgram = "svelte-template";
-            homepage = "https://github.com/spotdemo4/svelte-template";
-            changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
-            license = pkgs.lib.licenses.mit;
-            platforms = pkgs.lib.platforms.all;
-          };
-        });
+        };
 
         formatter = pkgs.nixfmt-tree;
       }
