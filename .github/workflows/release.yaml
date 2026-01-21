@@ -9,25 +9,27 @@ concurrency:
   group: release
 
 permissions:
-  contents: write
+  contents: read
   packages: write
 
 jobs:
   release:
     runs-on: nix
     steps:
-      - name: Checkout
+      - id: checkout
+        name: Checkout
         uses: spotdemo4/better-checkout@47df133e9f043cd08660fed5a09b6c20232ce909 # v0.2.0
         with:
           app-id: ${{ vars.CLIENT_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          fetch-depth: 0
           shell: release
 
       - name: Run nix-release
         run: nix-flake-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.checkout.outputs.token }}
           REGISTRY: ghcr.io
           REGISTRY_USERNAME: ${{ github.actor }}
           REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          BUNDLE: false
+          BUNDLE: appimage
