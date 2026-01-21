@@ -215,6 +215,13 @@
 
             config = {
               Cmd = [ "${pkgs.lib.meta.getExe packages.default}" ];
+              Labels = {
+                "org.opencontainers.image.title" = packages.default.pname;
+                "org.opencontainers.image.description" = packages.default.meta.description;
+                "org.opencontainers.image.version" = packages.default.version;
+                "org.opencontainers.image.source" = packages.default.meta.homepage;
+                "org.opencontainers.image.licenses" = packages.default.meta.license.spdxId;
+              };
             };
           };
         };
