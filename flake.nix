@@ -42,9 +42,9 @@
       in
       rec {
         devShells = {
-          name = "default";
-          shellHook = pkgs.shellhook.ref;
           default = pkgs.mkShell {
+            name = "default";
+            shellHook = pkgs.shellhook.ref;
             packages = with pkgs; [
               # svelte
               node
