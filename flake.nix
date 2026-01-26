@@ -42,6 +42,8 @@
       in
       rec {
         devShells = {
+          name = "default";
+          shellHook = pkgs.shellhook.ref;
           default = pkgs.mkShell {
             packages = with pkgs; [
               # svelte
@@ -53,22 +55,24 @@
               # util
               bumper
             ];
-            shellHook = pkgs.shellhook.ref;
           };
 
           bump = pkgs.mkShell {
+            name = "bump";
             packages = with pkgs; [
               bumper
             ];
           };
 
           release = pkgs.mkShell {
+            name = "release";
             packages = with pkgs; [
               nix-flake-release
             ];
           };
 
           update = pkgs.mkShell {
+            name = "update";
             packages = with pkgs; [
               renovate
 
@@ -78,6 +82,7 @@
           };
 
           vulnerable = pkgs.mkShell {
+            name = "vulnerable";
             packages = with pkgs; [
               # svelte
               node
