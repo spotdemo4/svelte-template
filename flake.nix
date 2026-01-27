@@ -36,14 +36,14 @@
             trev.overlays.libs
           ];
         };
+        fs = pkgs.lib.fileset;
         node = pkgs.nodejs_24;
         node-slim = pkgs.nodejs-slim_24;
-        fs = pkgs.lib.fileset;
       in
       rec {
         devShells = {
           default = pkgs.mkShell {
-            name = "default";
+            name = "dev";
             shellHook = pkgs.shellhook.ref;
             packages = with pkgs; [
               # svelte
@@ -54,6 +54,7 @@
 
               # util
               bumper
+              nix-flake-release
             ];
           };
 
@@ -154,7 +155,7 @@
           dev.script = "npm run dev";
         };
 
-        packages = {
+        packages = with pkgs.lib; rec {
           default = pkgs.buildNpmPackage (finalAttrs: {
             pname = "svelte-template";
             version = "0.5.1";
@@ -170,14 +171,12 @@
                 ]
               );
             };
-            nodejs = node;
 
+            nodejs = node;
+            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
             npmDeps = pkgs.importNpmLock {
               npmRoot = finalAttrs.src;
             };
-
-            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
-
             nativeBuildInputs = with pkgs; [
               makeWrapper
             ];
@@ -190,7 +189,7 @@
                mkdir -p $out/{bin,lib/node_modules/svelte-template}
                cp -r build node_modules package.json $out/lib/node_modules/svelte-template
 
-               makeWrapper "${pkgs.lib.getExe node-slim}" "$out/bin/svelte-template" \
+               makeWrapper "${getExe node-slim}" "$out/bin/svelte-template" \
                  --add-flags "$out/lib/node_modules/svelte-template/build/index.js"
 
                runHook postInstall
@@ -201,8 +200,8 @@
               mainProgram = "svelte-template";
               homepage = "https://github.com/spotdemo4/svelte-template";
               changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
-              license = pkgs.lib.licenses.mit;
-              platforms = pkgs.lib.platforms.all;
+              license = licenses.mit;
+              platforms = platforms.all;
             };
           });
 
@@ -212,20 +211,19 @@
 
             contents = with pkgs; [
               dockerTools.caCertificates
-              packages.default
             ];
 
             created = "now";
             meta = packages.default.meta;
 
             config = {
-              Cmd = [ "${pkgs.lib.meta.getExe packages.default}" ];
+              Entrypoint = [ "${meta.getExe default}" ];
               Labels = {
-                "org.opencontainers.image.title" = packages.default.pname;
-                "org.opencontainers.image.description" = packages.default.meta.description;
-                "org.opencontainers.image.version" = packages.default.version;
-                "org.opencontainers.image.source" = packages.default.meta.homepage;
-                "org.opencontainers.image.licenses" = packages.default.meta.license.spdxId;
+                "org.opencontainers.image.title" = default.pname;
+                "org.opencontainers.image.description" = default.meta.description;
+                "org.opencontainers.image.version" = default.version;
+                "org.opencontainers.image.source" = default.meta.homepage;
+                "org.opencontainers.image.licenses" = default.meta.license.spdxId;
               };
             };
           };
