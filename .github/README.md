@@ -66,15 +66,15 @@ bumper
 
 | OS      | Architecture | Download                                                                                                                                                         |
 | ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux   | amd64        | [svelte-template-0.5.1-x86_64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.1/svelte-template-0.5.1-x86_64-linux.tar.xz)     |
-| Linux   | arm64        | [svelte-template-0.5.1-aarch64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.1/svelte-template-0.5.1-aarch64-linux.tar.xz)   |
-| MacOS   | arm64        | [svelte-template-0.5.1-aarch64-darwin.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.1/svelte-template-0.5.1-aarch64-darwin.tar.xz) |
-| Windows | amd64        | [svelte-template-0.5.1-x86_64-windows.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.1/svelte-template-0.5.1-x86_64-windows.zip)       |
+| Linux   | amd64        | [svelte-template-0.5.2-x86_64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.2/svelte-template-0.5.2-x86_64-linux.tar.xz)     |
+| Linux   | arm64        | [svelte-template-0.5.2-aarch64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.2/svelte-template-0.5.2-aarch64-linux.tar.xz)   |
+| MacOS   | arm64        | [svelte-template-0.5.2-aarch64-darwin.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.2/svelte-template-0.5.2-aarch64-darwin.tar.xz) |
+| Windows | amd64        | [svelte-template-0.5.2-x86_64-windows.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.5.2/svelte-template-0.5.2-x86_64-windows.zip)       |
 
 ### Docker
 
 ```elm
-docker run ghcr.io/spotdemo4/svelte-template:0.5.1
+docker run ghcr.io/spotdemo4/svelte-template:0.5.2
 ```
 
 ### Nix
