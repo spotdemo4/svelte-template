@@ -3,12 +3,12 @@
 [![check](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml/badge.svg?branch=main)](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml)
 [![vulnerable](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml/badge.svg?branch=main)](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml)
 
-Template for starting [sveltekit](https://svelte.dev/) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+Template for starting [SvelteKit](https://svelte.dev/docs/kit/introduction) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
 ## Requirements
 
 - [nix](https://nixos.org/)
-- (optional) [direnv](https://direnv.net/)
+- [direnv](https://direnv.net/) (optional)
 
 ## Getting started
 
@@ -52,24 +52,24 @@ nix flake check
 
 ## Release
 
-Releases are automatically created for significant changes.
+Releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes.
 
 To manually create a new release:
 
 ```elm
-bumper
+bumper .github/README.md
 ```
 
 ## Use
 
-### Binary
+### Download
 
-| OS      | Architecture | Download                                                                                                                                                         |
-| ------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux   | amd64        | [svelte-template-0.6.0-x86_64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template-0.6.0-x86_64-linux.tar.xz)     |
-| Linux   | arm64        | [svelte-template-0.6.0-aarch64-linux.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template-0.6.0-aarch64-linux.tar.xz)   |
-| MacOS   | arm64        | [svelte-template-0.6.0-aarch64-darwin.tar.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template-0.6.0-aarch64-darwin.tar.xz) |
-| Windows | amd64        | [svelte-template-0.6.0-x86_64-windows.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template-0.6.0-x86_64-windows.zip)       |
+| OS      | Architecture | Download                                                                                                                                                 |
+| ------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Linux   | amd64        | [svelte-template_0.6.0_linux_amd64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_linux_amd64.xz)       |
+| Linux   | arm64        | [svelte-template_0.6.0_linux_arm64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_linux_arm64.xz)       |
+| MacOS   | arm64        | [svelte-template_0.6.0_darwin_arm64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_darwin_arm64.xz)     |
+| Windows | amd64        | [svelte-template_0.6.0_windows_amd64.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_windows_amd64.zip) |
 
 ### Docker
 
