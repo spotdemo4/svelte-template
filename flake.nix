@@ -227,6 +227,24 @@
               };
             };
           };
+
+          # cross compilation
+          linux-amd64 = deno.compile {
+            package = default;
+            target = "x86_64-unknown-linux-gnu";
+          };
+          linux-arm64 = deno.compile {
+            package = default;
+            target = "aarch64-unknown-linux-gnu";
+          };
+          darwin-arm64 = deno.compile {
+            package = default;
+            target = "aarch64-apple-darwin";
+          };
+          windows-amd64 = deno.compile {
+            package = default;
+            target = "x86_64-pc-windows-msvc";
+          };
         };
 
         formatter = pkgs.nixfmt-tree;
