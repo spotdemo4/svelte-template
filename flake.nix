@@ -206,15 +206,15 @@
           });
 
           image = pkgs.dockerTools.buildLayeredImage {
-            name = packages.default.pname;
-            tag = packages.default.version;
+            name = default.pname;
+            tag = default.version;
 
             contents = with pkgs; [
               dockerTools.caCertificates
             ];
 
             created = "now";
-            meta = packages.default.meta;
+            meta = default.meta;
 
             config = {
               Entrypoint = [ "${meta.getExe default}" ];
