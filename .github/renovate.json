@@ -6,7 +6,6 @@
 	"requireConfig": "ignored",
 	"platform": "github",
 	"repositories": ["spotdemo4/svelte-template"],
-	"allowedCommands": ["npm install"],
 
 	// repository
 	"extends": ["config:recommended"],
@@ -35,12 +34,6 @@
 			"groupName": "node packages",
 			"matchManagers": ["npm"],
 			"matchUpdateTypes": ["patch", "pin", "digest"]
-		},
-		{
-			"postUpgradeTasks": {
-				"commands": ["npm install"]
-			},
-			"matchManagers": ["npm"]
 		}
 	]
 }
