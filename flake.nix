@@ -52,6 +52,9 @@
               # formatters
               nixfmt
 
+              # linters
+              nixd
+
               # util
               bumper
               nix-flake-release
@@ -135,10 +138,8 @@
 
           actions = {
             src = fs.toSource {
-              root = ./.;
-              fileset = fs.unions [
-                ./.github/workflows
-              ];
+              root = ./.github/workflows;
+              fileset = ./.github/workflows;
             };
             deps = with pkgs; [
               action-validator
@@ -180,8 +181,6 @@
             nativeBuildInputs = with pkgs; [
               makeWrapper
             ];
-
-            doCheck = false;
 
             installPhase = ''
               runHook preInstall
@@ -228,7 +227,7 @@
             };
           };
 
-          # cross compilation
+          # cross-compilation
           linux-amd64 = deno.compile {
             package = default;
             target = "x86_64-unknown-linux-gnu";

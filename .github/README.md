@@ -5,16 +5,18 @@
 [![nix](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspotdemo4%2Fsvelte-template%2Frefs%2Fheads%2Fmain%2Fflake.lock&query=%24.nodes.nixpkgs.original.ref&logo=nixos&logoColor=%23bac2de&label=channel&labelColor=%23313244&color=%234d6fb7)](https://nixos.org/)
 [![node](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspotdemo4%2Fsvelte-template%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.engines.node&logo=nodedotjs&logoColor=%23bac2de&label=version&labelColor=%23313244&color=%23339933)](https://nodejs.org/en/about/previous-releases)
 
-Template for starting [SvelteKit](https://svelte.dev/docs/kit/introduction) projects, part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+template for starting [SvelteKit](https://svelte.dev/docs/kit/introduction) projects
 
-## Requirements
+part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
+
+## requirements
 
 - [nix](https://nixos.org/)
 - [direnv](https://direnv.net/) (optional)
 
-## Getting started
+## getting started
 
-Initialize direnv:
+initialize direnv:
 
 ```elm
 ln -s .envrc.project .envrc &&
@@ -34,27 +36,27 @@ npm i &&
 npx svelte-kit sync
 ```
 
-### Run
+### run
 
 ```elm
 nix run #dev
 ```
 
-### Build
+### build
 
 ```elm
 nix build
 ```
 
-### Check
+### check
 
 ```elm
 nix flake check
 ```
 
-### Release
+### release
 
-Releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes.
+releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes
 
 To manually create a version bump:
 
@@ -62,9 +64,9 @@ To manually create a version bump:
 bumper .github/README.md
 ```
 
-## Use
+## use
 
-### Download
+### download
 
 | OS      | Architecture | Download                                                                                                                                                 |
 | ------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,13 +75,13 @@ bumper .github/README.md
 | MacOS   | arm64        | [svelte-template_0.6.0_darwin_arm64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_darwin_arm64.xz)     |
 | Windows | amd64        | [svelte-template_0.6.0_windows_amd64.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.0/svelte-template_0.6.0_windows_amd64.zip) |
 
-### Docker
+### docker
 
 ```elm
 docker run ghcr.io/spotdemo4/svelte-template:0.6.0
 ```
 
-### Nix
+### nix
 
 ```elm
 nix run github:spotdemo4/svelte-template
