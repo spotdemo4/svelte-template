@@ -42,7 +42,7 @@
 		},
 		{
 			"matchManagers": ["npm"],
-			"matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+			"matchUpdateTypes": ["minor", "patch"],
 			"groupName": "node packages"
 		}
 	]
