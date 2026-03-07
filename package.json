@@ -18,7 +18,7 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"devDependencies": {
-		"@eslint/compat": "^2.0.2",
+		"@eslint/compat": "^2.0.3",
 		"@eslint/js": "^10.0.0",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@sveltejs/adapter-node": "^5.5.4",
