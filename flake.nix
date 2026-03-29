@@ -63,13 +63,13 @@
           update = pkgs.mkShell {
             packages = with pkgs; [
               renovate
-              node # npm i
+              nodejs_24 # npm i
             ];
           };
 
           vulnerable = pkgs.mkShell {
             packages = with pkgs; [
-              node # svelte
+              nodejs_24 # svelte
               flake-checker # nix
               octoscan # actions
             ];
