@@ -11,7 +11,7 @@
   };
 
   inputs = {
-    systems.url = "github:nix-systems/default";
+    systems.url = "github:spotdemo4/systems";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     trev = {
       url = "github:spotdemo4/nur";
@@ -157,15 +157,15 @@
              mkdir -p $out/{bin,lib/node_modules/svelte-template}
              cp -r build node_modules package.json $out/lib/node_modules/svelte-template
 
-             makeWrapper "${pkgs.lib.getExe pkgs.nodejs-slim_24}" "$out/bin/svelte-template" \
+             makeWrapper "${pkgs.lib.getExe pkgs.nodejs_24}" "$out/bin/svelte-template" \
                --add-flags "$out/lib/node_modules/svelte-template/build/index.js"
 
              runHook postInstall
           '';
 
           meta = {
-            description = "svelte template";
             mainProgram = "svelte-template";
+            description = "A template for building svelte apps with nix";
             license = pkgs.lib.licenses.mit;
             platforms = pkgs.lib.platforms.all;
             homepage = "https://github.com/spotdemo4/svelte-template";
