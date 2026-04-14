@@ -32,14 +32,10 @@
           default = pkgs.mkShell {
             shellHook = pkgs.shellhook.ref;
             packages = with pkgs; [
-              # svelte
               nodejs_24
 
-              # formatters
+              # format
               nixfmt
-
-              # linters
-              nixd
 
               # util
               bumper
@@ -69,7 +65,7 @@
 
           vulnerable = pkgs.mkShell {
             packages = with pkgs; [
-              nodejs_24 # svelte
+              nodejs_24 # npm audit
               flake-checker # nix
               octoscan # actions
             ];
@@ -87,9 +83,8 @@
           };
 
           actions = {
-            root = ./.;
-            fileset = ./.github/workflows;
-            deps = with pkgs; [
+            root = ./.github/workflows;
+            packages = with pkgs; [
               action-validator
               octoscan
             ];
@@ -102,7 +97,7 @@
           renovate = {
             root = ./.github;
             fileset = ./.github/renovate.json;
-            deps = with pkgs; [
+            packages = with pkgs; [
               renovate
             ];
             script = ''
@@ -113,7 +108,7 @@
           nix = {
             root = ./.;
             filter = file: file.hasExt "nix";
-            deps = with pkgs; [
+            packages = with pkgs; [
               nixfmt
             ];
             forEach = ''
@@ -126,55 +121,44 @@
           dev = "npm run dev";
         };
 
-        packages.default = pkgs.buildNpmPackage (finalAttrs: {
-          pname = "svelte-template";
-          version = "0.6.3";
-          nodejs = pkgs.nodejs_24;
+        packages = with pkgs.lib; {
+          default = pkgs.buildNpmPackage (finalAttrs: {
+            pname = "svelte-template";
+            version = "0.6.3";
 
-          src = pkgs.lib.fileset.toSource {
-            root = ./.;
-            fileset = pkgs.lib.fileset.difference ./. (
-              pkgs.lib.fileset.unions [
-                ./.github
-                ./.vscode
-                ./flake.nix
-                ./flake.lock
-              ]
-            );
+            src = fileset.toSource {
+              root = ./.;
+              fileset = fileset.difference ./. (
+                fileset.unions [
+                  ./.github
+                  ./.vscode
+                  ./flake.nix
+                  ./flake.lock
+                ]
+              );
+            };
+
+            nodejs = pkgs.nodejs_24;
+            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+            npmDeps = pkgs.importNpmLock {
+              npmRoot = finalAttrs.src;
+            };
+
+            meta = {
+              mainProgram = "svelte-template";
+              description = "A template for building svelte apps with nix";
+              license = licenses.mit;
+              platforms = platforms.all;
+              homepage = "https://github.com/spotdemo4/svelte-template";
+              changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
+            };
+          });
+        };
+
+        images = {
+          default = pkgs.mkImage self.packages.${system}.default {
+            contents = with pkgs; [ dockerTools.caCertificates ];
           };
-          npmDeps = pkgs.importNpmLock {
-            npmRoot = finalAttrs.src;
-          };
-          npmConfigHook = pkgs.importNpmLock.npmConfigHook;
-
-          nativeBuildInputs = with pkgs; [
-            makeWrapper
-          ];
-
-          installPhase = ''
-            runHook preInstall
-
-             mkdir -p $out/{bin,lib/node_modules/svelte-template}
-             cp -r build node_modules package.json $out/lib/node_modules/svelte-template
-
-             makeWrapper "${pkgs.lib.getExe pkgs.nodejs_24}" "$out/bin/svelte-template" \
-               --add-flags "$out/lib/node_modules/svelte-template/build/index.js"
-
-             runHook postInstall
-          '';
-
-          meta = {
-            mainProgram = "svelte-template";
-            description = "A template for building svelte apps with nix";
-            license = pkgs.lib.licenses.mit;
-            platforms = pkgs.lib.platforms.all;
-            homepage = "https://github.com/spotdemo4/svelte-template";
-            changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
-          };
-        });
-
-        images.default = pkgs.mkImage self.packages.${system}.default {
-          contents = with pkgs; [ dockerTools.caCertificates ];
         };
 
         schemas = trev.schemas;
