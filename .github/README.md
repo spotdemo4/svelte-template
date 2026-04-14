@@ -76,7 +76,7 @@ bumper .github/README.md
 ### docker
 
 ```elm
-docker run ghcr.io/spotdemo4/svelte-template:0.6.4
+docker run -P ghcr.io/spotdemo4/svelte-template:0.6.4
 ```
 
 ### nix

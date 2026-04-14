@@ -158,6 +158,11 @@
         images = {
           default = pkgs.mkImage self.packages.${system}.default {
             contents = with pkgs; [ dockerTools.caCertificates ];
+            config = {
+              ExposedPorts = {
+                "3000/tcp" = { };
+              };
+            };
           };
         };
 
