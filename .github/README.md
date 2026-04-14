@@ -68,12 +68,10 @@ bumper .github/README.md
 
 ### download
 
-| OS      | Architecture | Download                                                                                                                                                 |
-| ------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux   | amd64        | [svelte-template_0.6.4_linux_amd64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_linux_amd64.xz)       |
-| Linux   | arm64        | [svelte-template_0.6.4_linux_arm64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_linux_arm64.xz)       |
-| MacOS   | arm64        | [svelte-template_0.6.4_darwin_arm64.xz](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_darwin_arm64.xz)     |
-| Windows | amd64        | [svelte-template_0.6.4_windows_amd64.zip](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_windows_amd64.zip) |
+| OS    | Architecture | Download                                                                                                                                           |
+| ----- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Linux | amd64        | [svelte-template_0.6.4_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_amd64.AppImage) |
+| Linux | arm64        | [svelte-template_0.6.4_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.6.4/svelte-template_0.6.4_arm64.AppImage) |
 
 ### docker
 
