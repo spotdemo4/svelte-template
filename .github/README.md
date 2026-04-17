@@ -71,13 +71,13 @@ bumper .github/README.md
 
 | OS    | Architecture | Download                                                                                                                                           |
 | ----- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux | amd64        | [svelte-template_0.7.0_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.0/svelte-template_0.7.0_amd64.AppImage) |
-| Linux | arm64        | [svelte-template_0.7.0_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.0/svelte-template_0.7.0_arm64.AppImage) |
+| Linux | amd64        | [svelte-template_0.7.1_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.1/svelte-template_0.7.1_amd64.AppImage) |
+| Linux | arm64        | [svelte-template_0.7.1_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.1/svelte-template_0.7.1_arm64.AppImage) |
 
 ### docker
 
 ```elm
-docker run -P ghcr.io/spotdemo4/svelte-template:0.7.0
+docker run -P ghcr.io/spotdemo4/svelte-template:0.7.1
 ```
 
 ### nix
