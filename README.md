@@ -61,14 +61,14 @@ bumper README.md
 
 | Architecture | Download                                                                                                                                           |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| amd64        | [svelte-template_0.7.2_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_amd64.AppImage) |
-| arm64        | [svelte-template_0.7.2_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_arm64.AppImage) |
-| arm          | [svelte-template_0.7.2_arm.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_arm.AppImage)     |
+| amd64        | [svelte-template_0.7.3_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.3/svelte-template_0.7.3_amd64.AppImage) |
+| arm64        | [svelte-template_0.7.3_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.3/svelte-template_0.7.3_arm64.AppImage) |
+| arm          | [svelte-template_0.7.3_arm.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.3/svelte-template_0.7.3_arm.AppImage)     |
 
 ### docker
 
 ```elm
-docker run -P ghcr.io/spotdemo4/svelte-template:0.7.2
+docker run -P ghcr.io/spotdemo4/svelte-template:0.7.3
 ```
 
 ### nix
