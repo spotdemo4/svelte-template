@@ -128,14 +128,19 @@
 
             src = fileset.toSource {
               root = ./.;
-              fileset = fileset.difference ./. (
-                fileset.unions [
-                  ./.github
-                  ./.vscode
-                  ./flake.nix
-                  ./flake.lock
-                ]
-              );
+              fileset = fileset.unions [
+                ./.gitignore
+                ./.npmrc
+                ./eslint.config.ts
+                ./package.json
+                ./package-lock.json
+                ./prettier.config.ts
+                ./svelte.config.ts
+                ./tsconfig.json
+                ./vite.config.ts
+                ./src
+                ./static
+              ];
             };
 
             nodejs = pkgs.nodejs_24;
