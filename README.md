@@ -76,9 +76,3 @@ docker run -P ghcr.io/spotdemo4/svelte-template:0.7.2
 ```elm
 nix run github:spotdemo4/svelte-template
 ```
-
-### npm
-
-```elm
-npx spotdemo4/svelte-template
-```
