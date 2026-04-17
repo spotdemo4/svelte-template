@@ -146,7 +146,7 @@
 
             meta = {
               mainProgram = "svelte-template";
-              description = "A template for building svelte apps with nix";
+              description = "A template for SvelteKit projects.";
               license = licenses.mit;
               platforms = platforms.all;
               badPlatforms = [ systems.inspect.platformPatterns.isStatic ];
