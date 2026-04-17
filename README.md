@@ -4,6 +4,7 @@
 [![vulnerable](https://img.shields.io/github/actions/workflow/status/spotdemo4/svelte-template/vulnerable.yaml?branch=main&logo=github&logoColor=%23bac2de&label=vulnerable&labelColor=%23313244)](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml)
 [![nix](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspotdemo4%2Fsvelte-template%2Frefs%2Fheads%2Fmain%2Fflake.lock&query=%24.nodes.nixpkgs.original.ref&logo=nixos&logoColor=%23bac2de&label=channel&labelColor=%23313244&color=%234d6fb7)](https://nixos.org/)
 [![node](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fspotdemo4%2Fsvelte-template%2Frefs%2Fheads%2Fmain%2Fpackage.json&query=%24.engines.node&logo=nodedotjs&logoColor=%23bac2de&label=version&labelColor=%23313244&color=%23339933)](https://nodejs.org/en/about/previous-releases)
+[![npm](https://img.shields.io/npm/v/%40spotdemo4%2Fsvelte-template?logoColor=%23bac2de&logo=npm&labelColor=%23313244&color=%23CB3837)](https://www.npmjs.com/package/@spotdemo4/svelte-template)
 [![flakehub](https://img.shields.io/endpoint?url=https://flakehub.com/f/spotdemo4/svelte-template/badge&labelColor=%23313244)](https://flakehub.com/flake/spotdemo4/svelte-template)
 
 template for starting [SvelteKit](https://svelte.dev/docs/kit/introduction) projects
@@ -13,18 +14,10 @@ part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 ## requirements
 
 - [nix](https://nixos.org/)
-- [direnv](https://direnv.net/) (optional)
 
 ## getting started
 
-initialize direnv:
-
-```elm
-ln -s .envrc.project .envrc &&
-direnv allow
-```
-
-or manually enter the development environment:
+enter the development environment:
 
 ```elm
 nix develop
@@ -33,8 +26,7 @@ nix develop
 then install dependencies:
 
 ```elm
-npm i &&
-npx svelte-kit sync
+npm i && npx svelte-kit sync
 ```
 
 ### run
@@ -59,10 +51,8 @@ nix flake check
 
 releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes
 
-To manually create a version bump:
-
 ```elm
-bumper .github/README.md
+bumper README.md
 ```
 
 ## use
@@ -73,6 +63,7 @@ bumper .github/README.md
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | amd64        | [svelte-template_0.7.2_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_amd64.AppImage) |
 | arm64        | [svelte-template_0.7.2_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_arm64.AppImage) |
+| arm          | [svelte-template_0.7.2_arm.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.7.2/svelte-template_0.7.2_arm.AppImage)     |
 
 ### docker
 
@@ -84,4 +75,10 @@ docker run -P ghcr.io/spotdemo4/svelte-template:0.7.2
 
 ```elm
 nix run github:spotdemo4/svelte-template
+```
+
+### npm
+
+```elm
+npx spotdemo4/svelte-template
 ```

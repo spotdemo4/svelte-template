@@ -1,9 +1,12 @@
 {
-	"name": "svelte-template",
+	"name": "@spotdemo4/svelte-template",
 	"version": "0.7.2",
-	"private": true,
+	"description": "A template for SvelteKit projects",
 	"license": "MIT",
 	"type": "module",
+	"repository": {
+		"url": "https://github.com/spotdemo4/svelte-template"
+	},
 	"engines": {
 		"node": ">=24.0.0"
 	},
