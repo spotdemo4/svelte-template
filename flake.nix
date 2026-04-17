@@ -39,8 +39,6 @@
 
               # util
               bumper
-              flake-release
-              renovate
             ];
           };
 
@@ -53,6 +51,7 @@
           release = pkgs.mkShell {
             packages = with pkgs; [
               flake-release
+              nodejs_24 # npm publish
             ];
           };
 
@@ -84,6 +83,7 @@
 
           actions = {
             root = ./.github/workflows;
+            filter = file: file.hasExt "yaml";
             packages = with pkgs; [
               action-validator
               octoscan
@@ -96,7 +96,7 @@
 
           renovate = {
             root = ./.github;
-            fileset = ./.github/renovate.json;
+            files = ./.github/renovate.json;
             packages = with pkgs; [
               renovate
             ];
