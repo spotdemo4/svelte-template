@@ -121,8 +121,8 @@
           dev = "npm run dev";
         };
 
-        packages = with pkgs.lib; {
-          default = pkgs.buildNpmPackage (finalAttrs: {
+        packages.default = pkgs.buildNpmPackage (
+          final: with pkgs.lib; {
             pname = "svelte-template";
             version = "0.7.0";
 
@@ -141,7 +141,7 @@
             nodejs = pkgs.nodejs_24;
             npmConfigHook = pkgs.importNpmLock.npmConfigHook;
             npmDeps = pkgs.importNpmLock {
-              npmRoot = finalAttrs.src;
+              npmRoot = final.src;
             };
 
             meta = {
@@ -149,25 +149,27 @@
               description = "A template for building svelte apps with nix";
               license = licenses.mit;
               platforms = platforms.all;
+              badPlatforms = [ systems.inspect.platformPatterns.isStatic ];
               homepage = "https://github.com/spotdemo4/svelte-template";
-              changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${finalAttrs.version}";
+              changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${final.version}";
             };
-          });
-        };
+          }
+        );
 
-        images = {
-          default = pkgs.mkImage self.packages.${system}.default {
-            contents = with pkgs; [ dockerTools.caCertificates ];
-            config = {
-              ExposedPorts = {
-                "3000/tcp" = { };
-              };
-            };
+        images.default = pkgs.mkImage {
+          src = self.packages.${system}.default;
+          contents = with pkgs; [ dockerTools.caCertificates ];
+          config.ExposedPorts = {
+            "3000/tcp" = { };
           };
         };
 
-        schemas = trev.schemas;
+        appimages.default = pkgs.mkAppImage {
+          src = self.packages.${system}.default;
+        };
+
         formatter = pkgs.nixfmt-tree;
+        schemas = trev.schemas;
       }
     );
 }
