@@ -90,7 +90,7 @@
             filter = file: file.hasExt "yaml";
             packages = with pkgs; [
               action-validator
-              octoscan
+              zizmor
             ];
             forEach = ''
               action-validator "$file"
