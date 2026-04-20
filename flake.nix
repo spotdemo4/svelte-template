@@ -66,7 +66,7 @@
             packages = with pkgs; [
               nodejs_24 # npm audit
               flake-checker # nix
-              octoscan # actions
+              zizmor # actions
             ];
           };
         };
@@ -94,7 +94,7 @@
             ];
             forEach = ''
               action-validator "$file"
-              octoscan scan "$file"
+              zizmor --offline "$file"
             '';
           };
 
