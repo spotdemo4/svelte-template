@@ -71,6 +71,10 @@
           };
         };
 
+        apps = pkgs.mkApps {
+          default = "npm run dev";
+        };
+
         checks = pkgs.mkChecks {
           svelte = {
             src = self.packages.${system}.default;
@@ -115,10 +119,6 @@
               nixfmt --check "$file"
             '';
           };
-        };
-
-        apps = pkgs.mkApps {
-          dev = "npm run dev";
         };
 
         packages.default = pkgs.buildNpmPackage (

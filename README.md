@@ -33,7 +33,7 @@ npx svelte-kit sync
 ### run
 
 ```elm
-nix run #dev
+nix run
 ```
 
 ### build
