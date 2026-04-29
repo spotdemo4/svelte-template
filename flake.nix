@@ -87,7 +87,7 @@
           default = pkgs.buildNpmPackage (
             final: with pkgs.lib; {
               pname = "svelte-template";
-              version = "0.7.3";
+              version = "0.8.0";
 
               src = fileset.toSource {
                 root = ./.;
