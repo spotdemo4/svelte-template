@@ -1,8 +1,8 @@
 {
 	"recommendations": [
-		"svelte.svelte-vscode",
-		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
 		"jnoortheen.nix-ide",
-		"esbenp.prettier-vscode"
+		"svelte.svelte-vscode",
+		"dbaeumer.vscode-eslint"
 	]
 }

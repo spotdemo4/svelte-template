@@ -19,11 +19,12 @@ concurrency:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   bump:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - id: init
         name: Initialize
@@ -31,6 +32,7 @@ jobs:
         with:
           app_id: ${{ vars.CLIENT_ID }}
           app_key: ${{ secrets.PRIVATE_KEY }}
+          fetch_depth: 0
           shell: bump
 
       - name: Bump

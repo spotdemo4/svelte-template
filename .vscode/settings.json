@@ -1,4 +1,5 @@
 {
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
 	"files.associations": {
 		"renovate.json": "jsonc",
@@ -6,25 +7,16 @@
 		".envrc": "dotenv"
 	},
 
-	// svelte
-	"svelte.enable-ts-plugin": true,
-	"eslint.validate": ["svelte", "javascript", "typescript"],
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
-	},
-	"[svelte]": {
-		"editor.defaultFormatter": "svelte.svelte-vscode"
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-
 	// nix
 	"nix.enableLanguageServer": true,
 	"nix.serverPath": "nixd",
+	"nix.serverSettings": {
+		"nixd": {
+			"nixpkgs": {
+				"expr": "(builtins.getFlake (builtins.toString ./.)).outputs.nixpkgs.${builtins.currentSystem}"
+			}
+		}
+	},
 	"[nix]": {
 		"editor.defaultFormatter": "jnoortheen.nix-ide"
 	},
@@ -34,6 +26,15 @@
 		"https://docs.renovatebot.com/": true
 	},
 
-	// actions
-	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	// svelte
+	"svelte.enable-ts-plugin": true,
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	},
+
+	// eslint
+	"eslint.validate": ["svelte", "javascript", "typescript"],
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit"
+	}
 }

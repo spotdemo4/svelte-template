@@ -1,4 +1,4 @@
-# sveltekit template
+# svelte template
 
 [![check](https://img.shields.io/github/actions/workflow/status/spotdemo4/svelte-template/check.yaml?branch=main&logo=github&logoColor=%23bac2de&label=check&labelColor=%23313244)](https://github.com/spotdemo4/svelte-template/actions/workflows/check.yaml/)
 [![vulnerable](https://img.shields.io/github/actions/workflow/status/spotdemo4/svelte-template/vulnerable.yaml?branch=main&logo=github&logoColor=%23bac2de&label=vulnerable&labelColor=%23313244)](https://github.com/spotdemo4/svelte-template/actions/workflows/vulnerable.yaml)
@@ -17,17 +17,9 @@ part of [spotdemo4/templates](https://github.com/spotdemo4/templates)
 
 ## getting started
 
-enter the development environment:
-
 ```elm
-nix develop
-```
-
-then install dependencies:
-
-```elm
-npm i &&
-npx svelte-kit sync
+nix develop &&
+npm i
 ```
 
 ### run
@@ -50,11 +42,11 @@ nix flake check
 
 ### release
 
-releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes
-
 ```elm
 bumper "README.md"
 ```
+
+releases are automatically created for [significant](https://www.conventionalcommits.org/en/v1.0.0/#summary) changes
 
 ## use
 

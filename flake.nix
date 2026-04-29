@@ -28,11 +28,17 @@
     }:
     trev.libs.mkFlake (
       system: pkgs: {
+
+        # nix develop [#...]
         devShells = {
           default = pkgs.mkShell {
             shellHook = pkgs.shellhook.ref;
             packages = with pkgs; [
+              # svelte
               nodejs_24
+
+              # lint
+              nixd
 
               # format
               nixfmt
@@ -58,30 +64,98 @@
           update = pkgs.mkShell {
             packages = with pkgs; [
               renovate
-              nodejs_24 # npm i
+              nodejs_24 # npm install
             ];
           };
 
           vulnerable = pkgs.mkShell {
             packages = with pkgs; [
-              nodejs_24 # npm audit
               flake-checker # nix
               zizmor # actions
+              nodejs_24 # npm audit
             ];
           };
         };
 
+        # nix run [#...]
         apps = pkgs.mkApps {
           default = "npm run dev";
         };
 
-        checks = pkgs.mkChecks {
-          svelte = {
+        # nix build [#...]
+        packages = {
+          default = pkgs.buildNpmPackage (
+            final: with pkgs.lib; {
+              pname = "svelte-template";
+              version = "0.7.3";
+
+              src = fileset.toSource {
+                root = ./.;
+                fileset = fileset.unions [
+                  ./.gitignore
+                  ./.npmrc
+                  ./eslint.config.ts
+                  ./package.json
+                  ./package-lock.json
+                  ./prettier.config.ts
+                  ./svelte.config.ts
+                  ./tsconfig.json
+                  ./vite.config.ts
+                  ./src
+                  ./static
+                ];
+              };
+
+              nodejs = pkgs.nodejs_24;
+              npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+              npmDeps = pkgs.importNpmLock {
+                npmRoot = final.src;
+              };
+
+              meta = {
+                mainProgram = "svelte-template";
+                description = "A template for SvelteKit projects";
+                license = licenses.mit;
+                platforms = platforms.all;
+                badPlatforms = [ systems.inspect.platformPatterns.isStatic ];
+                homepage = "https://github.com/spotdemo4/svelte-template";
+                changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${final.version}";
+              };
+            }
+          );
+        };
+
+        # nix build #images.[...]
+        images = {
+          default = pkgs.mkImage {
             src = self.packages.${system}.default;
-            script = ''
-              npx prettier --check .
-              npx eslint .
-              npx svelte-kit sync && npx svelte-check
+            contents = with pkgs; [ dockerTools.caCertificates ];
+            config.ExposedPorts = {
+              "3000/tcp" = { };
+            };
+          };
+        };
+
+        # nix build #appimages.[...]
+        appimages = {
+          default = pkgs.mkAppImage {
+            src = self.packages.${system}.default;
+          };
+        };
+
+        # nix fmt
+        formatter = pkgs.nixfmt-tree;
+
+        # nix flake check
+        checks = pkgs.mkChecks {
+          nix = {
+            root = ./.;
+            filter = file: file.hasExt "nix";
+            packages = with pkgs; [
+              nixfmt
+            ];
+            forEach = ''
+              nixfmt --check "$file"
             '';
           };
 
@@ -109,72 +183,15 @@
             '';
           };
 
-          nix = {
-            root = ./.;
-            filter = file: file.hasExt "nix";
-            packages = with pkgs; [
-              nixfmt
-            ];
-            forEach = ''
-              nixfmt --check "$file"
+          svelte = {
+            src = self.packages.${system}.default;
+            script = ''
+              npx prettier --check .
+              npx eslint .
+              npx svelte-kit sync && npx svelte-check
             '';
           };
         };
-
-        packages.default = pkgs.buildNpmPackage (
-          final: with pkgs.lib; {
-            pname = "svelte-template";
-            version = "0.7.3";
-
-            src = fileset.toSource {
-              root = ./.;
-              fileset = fileset.unions [
-                ./.gitignore
-                ./.npmrc
-                ./eslint.config.ts
-                ./package.json
-                ./package-lock.json
-                ./prettier.config.ts
-                ./svelte.config.ts
-                ./tsconfig.json
-                ./vite.config.ts
-                ./src
-                ./static
-              ];
-            };
-
-            nodejs = pkgs.nodejs_24;
-            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
-            npmDeps = pkgs.importNpmLock {
-              npmRoot = final.src;
-            };
-
-            meta = {
-              mainProgram = "svelte-template";
-              description = "A template for SvelteKit projects.";
-              license = licenses.mit;
-              platforms = platforms.all;
-              badPlatforms = [ systems.inspect.platformPatterns.isStatic ];
-              homepage = "https://github.com/spotdemo4/svelte-template";
-              changelog = "https://github.com/spotdemo4/svelte-template/releases/tag/v${final.version}";
-            };
-          }
-        );
-
-        images.default = pkgs.mkImage {
-          src = self.packages.${system}.default;
-          contents = with pkgs; [ dockerTools.caCertificates ];
-          config.ExposedPorts = {
-            "3000/tcp" = { };
-          };
-        };
-
-        appimages.default = pkgs.mkAppImage {
-          src = self.packages.${system}.default;
-        };
-
-        formatter = pkgs.nixfmt-tree;
-        schemas = trev.schemas;
       }
     );
 }

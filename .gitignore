@@ -2,11 +2,11 @@
 /.envrc
 /docker-compose*
 
+# nix
+/result*
+/.direnv/
+
 # svelte
 /.svelte-kit/
 /node_modules/
 /build/
-
-# nix
-/result*
-/.direnv/
