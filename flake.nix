@@ -13,8 +13,8 @@
   inputs = {
     systems.url = "github:spotdemo4/systems";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    trev = {
-      url = "github:spotdemo4/nur";
+    trevpkgs = {
+      url = "github:spotdemo4/trevpkgs";
       inputs.systems.follows = "systems";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -23,10 +23,10 @@
   outputs =
     {
       self,
-      trev,
+      trevpkgs,
       ...
     }:
-    trev.libs.mkFlake (
+    trevpkgs.libs.mkFlake (
       system: pkgs: {
 
         # nix develop [#...]
@@ -39,6 +39,7 @@
 
               # lint
               nixd
+              nil
 
               # format
               nixfmt
@@ -79,7 +80,7 @@
 
         # nix run [#...]
         apps = pkgs.mkApps {
-          default = "npm run dev";
+          dev = "npm run dev";
         };
 
         # nix build [#...]
@@ -111,6 +112,12 @@
               npmDeps = pkgs.importNpmLock {
                 npmRoot = final.src;
               };
+
+              checkPhase = ''
+                npx prettier --check .
+                npx eslint .
+                npx svelte-kit sync && npx svelte-check
+              '';
 
               meta = {
                 mainProgram = "svelte-template";
@@ -148,13 +155,20 @@
 
         # nix flake check
         checks = pkgs.mkChecks {
+          svelte = self.packages.${system}.default.overrideAttrs {
+            dontBuild = true;
+            installPhase = ''
+              touch $out
+            '';
+          };
+
           nix = {
             root = ./.;
             filter = file: file.hasExt "nix";
             packages = with pkgs; [
               nixfmt
             ];
-            forEach = ''
+            script = ''
               nixfmt --check "$file"
             '';
           };
@@ -166,7 +180,7 @@
               action-validator
               zizmor
             ];
-            forEach = ''
+            script = ''
               action-validator "$file"
               zizmor --offline "$file"
             '';
@@ -180,15 +194,6 @@
             ];
             script = ''
               renovate-config-validator renovate.json
-            '';
-          };
-
-          svelte = {
-            src = self.packages.${system}.default;
-            script = ''
-              npx prettier --check .
-              npx eslint .
-              npx svelte-kit sync && npx svelte-check
             '';
           };
         };

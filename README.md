@@ -24,7 +24,7 @@ npm i
 ### run
 
 ```elm
-nix run
+nix run #dev
 ```
 
 ### build
