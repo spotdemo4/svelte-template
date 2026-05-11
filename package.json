@@ -1,6 +1,6 @@
 {
 	"name": "@spotdemo4/svelte-template",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"description": "A template for SvelteKit projects",
 	"license": "MIT",
 	"type": "module",

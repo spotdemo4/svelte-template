@@ -54,14 +54,14 @@ releases are automatically created for [significant](https://www.conventionalcom
 
 | Architecture | Download                                                                                                                                           |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| amd64        | [svelte-template_0.8.0_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.8.0/svelte-template_0.8.0_amd64.AppImage) |
-| arm64        | [svelte-template_0.8.0_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.8.0/svelte-template_0.8.0_arm64.AppImage) |
-| arm          | [svelte-template_0.8.0_arm.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.8.0/svelte-template_0.8.0_arm.AppImage)     |
+| amd64        | [svelte-template_0.9.0_amd64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.9.0/svelte-template_0.9.0_amd64.AppImage) |
+| arm64        | [svelte-template_0.9.0_arm64.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.9.0/svelte-template_0.9.0_arm64.AppImage) |
+| arm          | [svelte-template_0.9.0_arm.AppImage](https://github.com/spotdemo4/svelte-template/releases/download/v0.9.0/svelte-template_0.9.0_arm.AppImage)     |
 
 ### docker
 
 ```elm
-docker run -P ghcr.io/spotdemo4/svelte-template:0.8.0
+docker run -P ghcr.io/spotdemo4/svelte-template:0.9.0
 ```
 
 ### nix
