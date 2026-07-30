@@ -28,7 +28,7 @@
 		"@eslint/js": "^10.0.0",
 		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
 		"@sveltejs/adapter-node": "^5.5.7",
-		"@sveltejs/kit": "^2.70.1",
+		"@sveltejs/kit": "^2.70.2",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"@types/node": "^24.13.3",
